@@ -1,35 +1,44 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import logo from "../assets/logo.png";
-import { useFormik } from "formik";
-import icon from "../assets/signupicon.png";
 import Link from "next/link";
-import * as Yup from "yup";
+import logo from "../assets/logo.png";
+import icon from "../assets/signupicon.png";
 
-// Validation Schema
-const Schema = Yup.object().shape({
-  passport: Yup.string().required("Invalid IC/Passport Number"),
-});
+// Validation function
+const validatePassport = (passport) => {
+  if (!passport) {
+    return "Invalid IC/Passport Number";
+  }
+  return "";
+};
 
 export default function Signup() {
-  const formik = useFormik({
-    initialValues: {
-      passport: "", // Initializing passport field
-    },
-    validationSchema: Schema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
+  const [passport, setPassport] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setPassport(e.target.value);
+    setError(validatePassport(e.target.value));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationError = validatePassport(passport);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    alert(JSON.stringify({ passport }, null, 2));
+  };
 
   return (
     <div className="flex flex-col justify-between items-center bg-white w-[420px] rounded-[40px] mx-auto my-5">
       {/* Main Card */}
       <div className="flex flex-col items-center justify-center w-[420px] bg-gradient-to-b from-[#FFFFFF] to-[#8BC4F6] rounded-t-[40px] rounded-b-[90px] pt-8 pb-7">
         {/* Logo Image */}
-        <Image src={logo} alt="Logo"  className="w-[119px] h-[119px] object-contain" />
+        <Image src={logo} alt="Logo" className="w-[119px] h-[119px] object-contain" />
       </div>
 
       {/* Heading */}
@@ -39,7 +48,7 @@ export default function Signup() {
       </div>
 
       {/* Form */}
-      <form onSubmit={formik.handleSubmit} className="flex flex-col items-center gap-4 w-full px-8">
+      <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4 w-full px-8">
         <div>
           <label htmlFor="passport" className="text-[#254B2D] pl-2 pb-2 text-left font-extrabold text-md">
             IC/Passport Number
@@ -49,19 +58,15 @@ export default function Signup() {
             name="passport"
             type="text"
             placeholder="Enter your IC/Passport Number"
-            onChange={formik.handleChange}
-            value={formik.values.passport}
+            onChange={handleChange}
+            value={passport}
             className="px-4 placeholder:text-[#424242] border-2 border-[#FE814B] font-semibold h-[50px] w-[380px] rounded-3xl"
           />
-
-           <div className="pl pl-3 pt-4">
-           {formik.errors.passport && formik.touched.passport ? (
-            <div className="text-[#FE814B] text-center bg-[#FFD2C2] w-[350px] py-2 rounded-3xl font-semibold text-md">
-              {formik.errors.passport}
+          {error && (
+            <div className="text-[#FE814B] text-center bg-[#FFD2C2] w-[350px] py-2 rounded-3xl font-semibold text-md mt-2">
+              {error}
             </div>
-          ) : null}
-           </div>
-        
+          )}
         </div>
 
         <button type="submit" className="w-[420px] mb-16 mt-10 flex justify-center rounded-b-[40px]">
