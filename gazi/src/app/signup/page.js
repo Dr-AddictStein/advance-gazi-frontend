@@ -29,7 +29,7 @@ export default function Signup() {
       {/* Main Card */}
       <div className="flex flex-col items-center justify-center w-[420px] bg-gradient-to-b from-[#FFFFFF] to-[#8BC4F6] rounded-t-[40px] rounded-b-[90px] pt-8 pb-7">
         {/* Logo Image */}
-        <Image src={logo} alt="Logo" className="w-[119px] h-[119px] object-contain" />
+        <Image src={logo} alt="Logo"  className="w-[119px] h-[119px] object-contain" />
       </div>
 
       {/* Heading */}
