@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../assets/logo.png";
 import icon from "../assets/signupicon.png";
-
+import mailicon from "../assets/Monotone email.png";
+import erroricon from "../assets/Solid question round.png";
 // Validation function
 const validatePassport = (passport) => {
   if (!passport) {
@@ -34,9 +35,10 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center bg-white w-[420px] rounded-[40px] mx-auto my-5">
+    <div className="flex flex-col justify-between scre max-h-screen h-fit items-center bg-white w-[420px] rounded-[40px] mx-auto my-5">
       {/* Main Card */}
-      <div className="flex flex-col items-center justify-center w-[420px] bg-gradient-to-b from-[#FFFFFF] to-[#8BC4F6] rounded-t-[40px] rounded-b-[90px] pt-8 pb-7">
+     
+    <div className="flex flex-col items-center justify-center w-[420px]  bg-gradient-to-b from-white to-[#8BC4F6] rounded-t-[40px] rounded-bl-[80px] rounded-br-[80px] pt-8 pb-7">
         {/* Logo Image */}
         <Image src={logo} alt="Logo" className="w-[119px] h-[119px] object-contain" />
       </div>
@@ -53,18 +55,23 @@ export default function Signup() {
           <label htmlFor="passport" className="text-[#254B2D] pl-2 pb-2 text-left font-extrabold text-md">
             IC/Passport Number
           </label>
-          <input
+
+
+           <div className="relative">
+         <Image src={mailicon}  className="ab absolute w-12 pt-[9px] px-2"/>
+           <input
             id="passport"
             name="passport"
             type="text"
             placeholder="Enter your IC/Passport Number"
             onChange={handleChange}
             value={passport}
-            className="px-4 placeholder:text-[#424242] border-2 border-[#FE814B] font-semibold h-[50px] w-[380px] rounded-3xl"
+            className="pl-12 placeholder:text-[#424242] focus:shadow-md focus:shadow-[#FE814B] focus:outline-none border-2 border-[#FE814B] font-semibold h-[50px] w-[380px] rounded-3xl"
           />
+           </div>
           {error && (
-            <div className="text-[#FE814B] text-center bg-[#FFD2C2] w-[350px] py-2 rounded-3xl font-semibold text-md mt-2">
-              {error}
+            <div className="text-[#FE814B] pl pl-16 bg-[#FFD2C2] w-full py-2 rounded-3xl font-semibold text-md mt-2">
+             <div className="flex justify-items-center gap-2 items-center"> <div><Image src={erroricon} alt="error"/></div>  <div>{error}</div> </div>
             </div>
           )}
         </div>
@@ -76,7 +83,7 @@ export default function Signup() {
         </button>
       </form>
 
-      <div className="pb pt-24 pb-5 flex gap-1">
+      <div className="pb  pb-5 flex gap-1">
         <span className="font-medium text-[#1F160FA3]">Already have an account? </span>
         <Link href="/signin">
           <div className="text-[#FE814B] font-medium underline">Sign In.</div>
