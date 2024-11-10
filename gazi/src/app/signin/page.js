@@ -15,7 +15,7 @@ const validatePassport = (passport) => {
   return "";
 };
 
-export default function Signup() {
+export default function Signin() {
   const [passport, setPassport] = useState("");
   const [error, setError] = useState("");
 
@@ -76,11 +76,11 @@ export default function Signup() {
           )}
         </div>
 
-        <Link href={'/usercheck'}  className="w-[420px] mb-16 mt-10 flex justify-center rounded-b-[40px]">
+        <button type="submit" className="w-[420px] mb-16 mt-10 flex justify-center rounded-b-[40px]">
           <div className="flex items-center justify-center gap-2 w-[393px] h-[60px] bg-[#4086C4] text-white font-semibold rounded-full shadow-lg">
             <Image src={icon} alt="Submit Icon" />
           </div>
-        </Link>
+        </button>
       </form>
 
       <div className="pb  pb-5 flex gap-1">

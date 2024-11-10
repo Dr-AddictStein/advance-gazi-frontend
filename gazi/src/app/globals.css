@@ -19,3 +19,29 @@ body {
   background: var(--background);
   font-family: "Urbanist", sans-serif;
 }
+
+.custom-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #1D4781;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Add a check icon with the pseudo-element when checked */
+.custom-checkbox:checked {
+  background-color: #F3F5F6;
+}
+
+.custom-checkbox:checked::before {
+  content: '✓'; /* Check icon */
+  color: #1D4781;
+  font-size: 16px;
+}
