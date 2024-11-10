@@ -10,12 +10,20 @@ export default function PinSetup() {
   const [confirmPin, setConfirmPin] = useState(['', '', '', '','','']);
   const [error, setError] = useState('');
 
+
+
+
   const handlePinChange = (value, index, type) => {
     const newPin = type === 'pin' ? [...pin] : [...confirmPin];
     newPin[index] = value.slice(-1); // Limit to a single digit per box
     type === 'pin' ? setPin(newPin) : setConfirmPin(newPin);
     setError('');
   };
+
+  
+
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,7 +91,7 @@ export default function PinSetup() {
         )}
 
 <div className="w-full flex justify-center py-10 ">
-          <Link href={'/setpin'}
+          <Link href={'/signin'}
             // type="submit"
             className="flex items-center justify-center gap-2 w-full h-[60px] bg-[#9FA5AE] font-semibold rounded-full shadow-lg"
           >
